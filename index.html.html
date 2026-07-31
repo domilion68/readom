@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>READOM — Rénovation intérieure à Libourne (33) et Oléron (17)</title>
+<meta name="description" content="READOM — rénovation intérieure à Libourne (33) et Oléron (17). Isolation, cloisons, cuisines, salles de bain, carrelage, électricité. Devis gratuit, sans engagement.">
+<meta name="theme-color" content="#17160F">
+<meta property="og:title" content="READOM — Rénovation intérieure">
+<meta property="og:description" content="Isolation, cloisons, cuisines, salles de bain, carrelage, électricité — à Libourne (33) et Oléron (17). Devis gratuit.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:        #17160F;
+    --graphite:   #78766B;
+    --paper:      #FFFFFF;
+    --stone:      #F5F3EE;
+    --line:       #E6E2D6;
+    --brass:      #8C6A2E;
+    --brass-deep: #6E5324;
+    --brass-tint: #F2E8D5;
+    --font:       'Space Grotesk', system-ui, -apple-system, sans-serif;
+    --nav-h:      64px;
+    --container:  1240px;
+  }
+
+  /* ============ RESET ============ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font);
+    color:var(--ink);
+    background:var(--paper);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  button,input,textarea,select{font-family:inherit;font-size:inherit;color:inherit;}
+  a{color:inherit;}
+  ul{list-style:none;}
+  section, header, footer{scroll-margin-top:var(--nav-h);}
+
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+
+  :focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  }
+
+  .wrap{max-width:var(--container);margin:0 auto;padding-inline:2rem;}
+
+  /* ============ SHARED SECTION HEADER ============ */
+  .eyebrow{
+    font-size:0.75rem;font-weight:600;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--brass-deep);margin-bottom:0.75rem;
+  }
+  .section-title{
+    font-size:clamp(1.9rem,3.4vw,2.6rem);font-weight:600;
+    letter-spacing:-0.03em;line-height:1.1;margin-bottom:0.9rem;
+  }
+  .section-copy{color:var(--graphite);max-width:600px;line-height:1.75;}
+  .chantiers-eyebrow{font-size:1.2rem !important;}
+
+  /* ============ NAV ============ */
+  .site-nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);}
+  .brand{display:flex;align-items:center;text-decoration:none;}
+  .brand img{height:34px;width:auto;}
+  .nav-links{display:flex;align-items:center;gap:2rem;}
+  .nav-links a{
+    font-size:0.875rem;font-weight:500;text-decoration:none;color:var(--graphite);
+    padding-bottom:0.3rem;border-bottom:1px solid transparent;
+    transition:color 0.15s, border-color 0.15s;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--ink);border-color:var(--brass);}
+  .nav-links .nav-cta{
+    background:var(--ink);color:var(--paper);padding:0.55rem 1.1rem;
+    font-weight:600;border:1px solid var(--ink);
+  }
+  .nav-links .nav-cta:hover{background:var(--brass-deep);border-color:var(--brass-deep);color:var(--paper);}
+
+  .burger{
+    display:none;flex-direction:column;justify-content:center;gap:5px;
+    width:36px;height:36px;background:none;border:none;cursor:pointer;
+  }
+  .burger span{display:block;width:22px;height:1.5px;background:var(--ink);transition:transform .2s, opacity .2s;}
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+  /* ============ HERO ============ */
+  .hero{padding:3.5rem 0 3rem;border-bottom:1px solid var(--line);}
+  .hero-logo{max-width:300px;width:100%;height:auto;}
+  .hero-tagline{margin-top:1.5rem;font-size:0.9375rem;color:var(--graphite);}
+  .hero-tagline strong{color:var(--ink);font-weight:600;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.25rem;}
+  .chip{
+    font-size:0.75rem;font-weight:600;letter-spacing:0.01em;
+    padding:0.4rem 0.85rem;background:var(--stone);border:1px solid var(--line);color:var(--ink);
+  }
+  .chip.location{background:var(--brass-tint);border-color:transparent;color:var(--brass-deep);}
+
+  /* ============ CHANTIERS ============ */
+  .chantiers{padding:4.5rem 0;}
+  .chantiers-header{max-width:640px;margin-bottom:2.5rem;}
+
+  .tabs{
+    display:flex;gap:0.5rem;overflow-x:auto;margin-bottom:2.5rem;
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{
+    flex:0 0 auto;padding:0.6rem 1.15rem;border:1px solid var(--line);background:var(--paper);
+    font-weight:600;font-size:.875rem;cursor:pointer;color:var(--graphite);
+    white-space:nowrap;transition:border-color .15s, color .15s, background .15s;
+  }
+  .tab:hover{border-color:var(--ink);color:var(--ink);}
+  .tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+
+  .chantier-panel{display:none;}
+  .chantier-panel.active{display:block;}
+  .chantier-heading{
+    font-size:1.8rem;font-weight:600;margin-bottom:2.25rem;
+    padding-bottom:1rem;border-bottom:1px solid var(--line);
+  }
+
+  .room{margin-bottom:3rem;}
+  .room:last-child{margin-bottom:0;}
+  .room-title{
+    font-size:1rem;font-weight:600;margin-bottom:1rem;
+    display:flex;align-items:center;gap:0.75rem;
+  }
+  .room-title::after{content:'';flex:1;height:1px;background:var(--line);}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+  .compare-col{display:flex;flex-direction:column;gap:0.6rem;}
+  .compare-label{font-size:.6875rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite);}
+  .compare-label.after{color:var(--brass-deep);}
+
+  /* ---- gallery component (avant / après) ---- */
+  .gallery{
+    position:relative;background:var(--stone);border:1px solid var(--line);
+    aspect-ratio:4/3;overflow:hidden;
+  }
+  .g-img-btn{
+    all:unset;cursor:zoom-in;width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .g-img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;transition:transform .3s ease;}
+  .g-img-btn:hover .g-img{transform:scale(1.02);}
+  .g-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:32px;height:32px;border:none;background:rgba(23,22,15,0.55);color:#fff;
+    font-size:1.05rem;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:background .15s;
+  }
+  .g-nav:hover{background:rgba(23,22,15,0.82);}
+  .g-prev{left:0.5rem;}
+  .g-next{right:0.5rem;}
+  .g-count{
+    position:absolute;right:0.5rem;bottom:0.5rem;background:rgba(23,22,15,0.6);
+    color:#fff;font-size:0.6875rem;padding:0.2rem 0.5rem;
+  }
+
+  /* ============ LIGHTBOX ============ */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(15,14,10,0.94);z-index:200;
+    display:none;align-items:center;justify-content:center;padding:2.5rem 1.5rem;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%;max-height:80vh;object-fit:contain;}
+  .lightbox-close{
+    position:absolute;top:1.25rem;right:1.5rem;background:none;border:none;
+    color:#fff;font-size:1.75rem;line-height:1;cursor:pointer;padding:0.25rem;
+  }
+  .lightbox .g-nav{width:46px;height:46px;font-size:1.4rem;background:rgba(255,255,255,0.12);}
+  .lightbox .g-nav:hover{background:rgba(255,255,255,0.25);}
+  .lightbox-caption{
+    position:absolute;bottom:1.25rem;left:0;right:0;text-align:center;
+    color:#fff;font-size:0.8125rem;letter-spacing:0.03em;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact{padding:4.5rem 0 5rem;border-top:1px solid var(--line);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start;}
+  .contact-left h2{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;letter-spacing:-0.03em;margin-bottom:1rem;}
+  .contact-left p{font-size:0.9375rem;color:var(--graphite);line-height:1.7;margin-bottom:0.5rem;}
+  .direct{margin-top:2rem;padding-top:2rem;border-top:1px solid var(--line);}
+  .direct .label{
+    font-size:0.6875rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--graphite);margin-bottom:0.5rem;
+  }
+  .direct a{display:block;font-size:0.9375rem;font-weight:500;text-decoration:none;margin-bottom:0.25rem;}
+  .direct a:hover{color:var(--brass-deep);text-decoration:underline;}
+
+  .contact-form{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .fg{display:flex;flex-direction:column;gap:0.375rem;}
+  .fg.full{grid-column:span 2;}
+  .fg label{font-size:0.75rem;font-weight:500;color:var(--graphite);}
+  .fg input, .fg textarea, .fg select{
+    padding:0.625rem 0.875rem;border:1px solid var(--line);background:var(--paper);
+    outline:none;transition:border-color .15s, box-shadow .15s;width:100%;
+  }
+  .fg input:focus, .fg textarea:focus, .fg select:focus{
+    border-color:var(--ink);box-shadow:0 0 0 3px rgba(140,106,46,0.15);
+  }
+  .fg textarea{resize:vertical;min-height:110px;}
+
+  .submit-row{grid-column:span 2;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+  .btn-primary{
+    padding:0.75rem 2.1rem;background:var(--ink);color:var(--paper);font-weight:600;
+    font-size:0.875rem;border:none;cursor:pointer;transition:background .15s;
+  }
+  .btn-primary:hover{background:var(--brass-deep);}
+  .form-status{font-size:0.875rem;color:#2e7d5a;display:none;}
+  .form-status.show{display:inline-flex;align-items:center;}
+
+  /* ============ FOOTER ============ */
+  footer{border-top:1px solid var(--line);padding:1.5rem 0;}
+  .footer-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;}
+  .footer-row img{height:26px;width:auto;}
+  .footer-copy{font-size:0.8125rem;color:var(--graphite);}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:900px){
+    .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  }
+
+  @media (max-width:680px){
+    .wrap{padding-inline:1.25rem;}
+    .nav-links{
+      display:none;position:absolute;top:var(--nav-h);left:0;right:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      flex-direction:column;align-items:flex-start;padding:1.25rem;gap:1rem;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links .nav-cta{width:100%;text-align:center;}
+    .burger{display:flex;}
+
+    .compare{grid-template-columns:1fr;}
+    .contact-form{grid-template-columns:1fr;}
+    .fg.full{grid-column:auto;}
+    .submit-row{grid-column:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="wrap nav-row">
+    <a href="#top" class="brand"><img src="logo_readom.png" alt="READOM"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#chantiers">Chantiers</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <h1 class="sr-only">READOM — Rénovation d'intérieur à Libourne et en Gironde</h1>
+    <img class="hero-logo" src="logo_readom.png" alt="READOM — rénovation intérieure">
+    <p class="hero-tagline"><strong>Rénovation intérieure</strong> — Libourne (33) &amp; Oléron (17)</p>
+    <div class="chip-row">
+      <span class="chip location">Libourne (33) &amp; Oléron (17) </span>
+      <span class="chip">Isolation</span>
+      <span class="chip">Cloisons &amp; agencement</span>
+      <span class="chip">Cuisines</span>
+      <span class="chip">Salles de bain</span>
+      <span class="chip">Carrelage</span>
+      <span class="chip">Électricité</span>
+      <span class="chip">Toiture</span>
+      <span class="chip">Maçonnerie</span>
+    </div>
+  </div>
+</header>
+
+<!-- CHANTIERS -->
+<section class="chantiers" id="chantiers">
+  <div class="wrap">
+    <div class="chantiers-header">
+      <div class="eyebrow chantiers-eyebrow">Chantiers </div>
+      <p class="section-copy">Rénovations et aménagements complets, présentés en photos avant / après.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Chantiers" id="chantierTabs">
+      <button class="tab" role="tab" id="tab-arcachon" aria-controls="panel-arcachon" data-target="panel-arcachon">Arcachon</button>
+      <button class="tab" role="tab" id="tab-combles" aria-controls="panel-combles" data-target="panel-combles">Combles</button>
+      <button class="tab" role="tab" id="tab-facade" aria-controls="panel-facade" data-target="panel-facade">Façade Chateau d'Oléron</button>
+      <button class="tab" role="tab" id="tab-puits" aria-controls="panel-puits" data-target="panel-puits">Puits de jour</button>
+    </div>
+
+    <!-- ARCACHON -->
+    <section class="chantier-panel" id="panel-arcachon" role="tabpanel" aria-labelledby="tab-arcachon">
+      <h3 class="chantier-heading">Appartement — Arcachon</h3>
+
+      <article class="room">
+        <h4 class="room-title">Entrée</h4>
+        <div class="compare">
+          <div class="compare-col">
+            <span class="compare-label">Avant</span>
+            <div class="gallery" data-label="Entrée — avant" data-images='["chantier_arcachon/entree/entree_avant.jpg"]'></div>
+          </div>
+          <div class="compare-col">
+            <span class="compare-label after">Après</span>
+            <div class="gallery" data-label="Entrée — après" data-images='["chantier_arcachon/entree/entree_apres.jpg"]'></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="room">
+        <h4 class="room-title">Cuisine</h4>
+        <div class="compare">
+          <div class="compare-col">
+            <span class="compare-label">Avant</span>
+            <div class="gallery" data-label="Cuisine — avant" data-images='["chantier_arcachon/cuisine/cuisine_avant.jpg"]'></div>
+          </div>
+          <div class="compare-col">
+            <span class="compare-label after">Après</span>
+            <div class="gallery" data-label="Cuisine — après" data-images='["chantier_arcachon/cuisine/cuisine_apres_1.jpg","chantier_arcachon/cuisine/cuisine_apres_2.jpg"]'></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="room">
+        <h4 class="room-title">Salle de bain</h4>
+        <div class="compare">
+          <div class="compare-col">
+            <span class="compare-label">Avant</span>
+            <div class="gallery" data-label="Salle de bain — avant" data-images='["chantier_arcachon/sdb/sdb_avant_1.jpg","chantier_arcachon/sdb/sdb_avant_2.jpg"]'></div>
+          </div>
+          <div class="compare-col">
+            <span class="compare-label after">Après</span>
+            <div class="gallery" data-label="Salle de bain — après" data-images='["chantier_arcachon/sdb/sbd_apres_1.jpg","chantier_arcachon/sdb/sdb_apres_2.jpg","chantier_arcachon/sdb/sdb_apres_3.jpg","chantier_arcachon/sdb/sdb_apres_4.jpg"]'></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- COMBLES -->
+    <section class="chantier-panel" id="panel-combles" role="tabpanel" aria-labelledby="tab-combles">
+      <h3 class="chantier-heading">Aménagement — Combles</h3>
+
+      <article class="room">
+        <h4 class="room-title">Combles</h4>
+        <div class="compare">
+          <div class="compare-col">
+            <span class="compare-label">Avant</span>
+            <div class="gallery" data-label="Combles — avant" data-images='["amenagement_combles/avant/antho_av_1.jpg","amenagement_combles/avant/antho_av_2.jpg","amenagement_combles/avant/antho_av_3.jpg"]'></div>
+          </div>
+          <div class="compare-col">
+            <span class="compare-label after">Après</span>
+            <div class="gallery" data-label="Combles — après" data-images='["amenagement_combles/apres/antho_ap_1.jpg","amenagement_combles/apres/antho_ap_2.jpg","amenagement_combles/apres/antho_ap_3.jpg","amenagement_combles/apres/antho_ap_4.jpg"]'></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- PUITS DE JOUR -->
+    <section class="chantier-panel" id="panel-puits" role="tabpanel" aria-labelledby="tab-puits">
+      <h3 class="chantier-heading">Puits de jour — Rénovation</h3>
+
+      <article class="room">
+        <h4 class="room-title">Puits de jour</h4>
+        <div class="compare">
+          <div class="compare-col">
+            <span class="compare-label">Avant</span>
+            <div class="gallery" data-label="Puits de jour — avant" data-images='["puit_de_jour/avant/puit_jour_avant_1.jpg","puit_de_jour/avant/puit_jour_avant_2.jpg","puit_de_jour/avant/puit_jour_avant_3.jpg","puit_de_jour/avant/puit_jour_avant_4.jpg"]'></div>
+          </div>
+          <div class="compare-col">
+            <span class="compare-label after">Après</span>
+            <div class="gallery" data-label="Puits de jour — après" data-images='["puit_de_jour/apres/puit_jour_apres_1.jpg","puit_de_jour/apres/puit_jour_apres_2.jpg"]'></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- FAÇADE CHÂTEAU D'OLÉRON -->
+    <section class="chantier-panel" id="panel-facade" role="tabpanel" aria-labelledby="tab-facade">
+      <h3 class="chantier-heading">Façade Chateau d'Oléron — Rénovation</h3>
+
+      <article class="room">
+        <h4 class="room-title">Façade</h4>
+        <div class="compare">
+          <div class="compare-col">
+            <span class="compare-label">Avant</span>
+            <div class="gallery" data-label="Façade Chateau d'Oléron — avant" data-images='["facade_chateau_oleron/avant/facade_chateau_oleron_av.jpg"]'></div>
+          </div>
+          <div class="compare-col">
+            <span class="compare-label after">Après</span>
+            <div class="gallery" data-label="Façade Chateau d'Oléron — après" data-images='["facade_chateau_oleron/apres/facade_chateau_oleron_ap.jpg"]'></div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-left">
+      <h2>Un projet<br>en tête ?</h2>
+      <p>Envoyez les grandes lignes — superficie, type de travaux, délais souhaités — et une réponse suivra sous 48 h.</p>
+      <p>Devis gratuit, sans engagement.</p>
+
+      <div class="direct">
+        <div class="label">Contact direct</div>
+        <a href="tel:+33671604222">06 71 60 42 22</a>
+        <a href="mailto:contact.readom@gmail.com">contact.readom@gmail.com</a>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contactForm">
+      <div class="fg">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
+      </div>
+      <div class="fg">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+      </div>
+      <div class="fg">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="jean@email.com" required>
+      </div>
+      <div class="fg">
+        <label for="tel">Téléphone</label>
+        <input type="tel" id="tel" name="tel" placeholder="06 12 34 56 78">
+      </div>
+      <div class="fg full">
+        <label for="type">Type de travaux</label>
+        <select id="type" name="type">
+          <option value="">—</option>
+          <option>Isolation</option>
+          <option>Cloisons / agencement</option>
+          <option>Cuisine</option>
+          <option>Salle de bain</option>
+          <option>Carrelage / sols</option>
+          <option>Toiture</option>
+          <option>Maçonnerie</option>
+          <option>Rénovation complète</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="fg full">
+        <label for="message">Description du projet</label>
+        <textarea id="message" name="message" placeholder="Superficie, état actuel, délais..."></textarea>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn-primary">Envoyer</button>
+        <span class="form-status" id="formStatus">Message envoyé — réponse sous 48 h.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-row">
+    <a href="#top"><img src="logo_readom.png" alt="READOM"></a>
+    <span class="footer-copy">© <span id="year">2026</span> — Libourne (33) et Oléron (17)</span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
+  <button type="button" class="g-nav g-prev" id="lightboxPrev" aria-label="Photo précédente">&#8249;</button>
+  <img id="lightboxImg" src="" alt="">
+  <button type="button" class="g-nav g-next" id="lightboxNext" aria-label="Photo suivante">&#8250;</button>
+  <span class="lightbox-caption" id="lightboxCaption"></span>
+</div>
+
+<script>
+(function(){
+  /* ---------- Galleries (avant / après) ---------- */
+  const galleries = [];
+  let activeLightboxGallery = null;
+  let lastFocused = null;
+
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lightboxImg');
+  const lbCaption  = document.getElementById('lightboxCaption');
+  const lbPrev     = document.getElementById('lightboxPrev');
+  const lbNext     = document.getElementById('lightboxNext');
+  const lbClose    = document.getElementById('lightboxClose');
+
+  function updateLightbox(){
+    const g = activeLightboxGallery;
+    if(!g) return;
+    lbImg.src = g.images[g.index];
+    lbImg.alt = g.label + ' — photo ' + (g.index+1) + ' sur ' + g.images.length;
+    lbCaption.textContent = g.images.length > 1 ? (g.label + ' — ' + (g.index+1) + '/' + g.images.length) : g.label;
+    const multi = g.images.length > 1;
+    lbPrev.style.display = multi ? '' : 'none';
+    lbNext.style.display = multi ? '' : 'none';
+  }
+
+  function openLightbox(g){
+    activeLightboxGallery = g;
+    lastFocused = document.activeElement;
+    updateLightbox();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    activeLightboxGallery = null;
+    if(lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+  lbPrev.addEventListener('click', function(){ activeLightboxGallery.show(activeLightboxGallery.index - 1); });
+  lbNext.addEventListener('click', function(){ activeLightboxGallery.show(activeLightboxGallery.index + 1); });
+
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') activeLightboxGallery.show(activeLightboxGallery.index - 1);
+    if(e.key === 'ArrowRight') activeLightboxGallery.show(activeLightboxGallery.index + 1);
+  });
+
+  function buildGallery(container){
+    let images = [];
+    try { images = JSON.parse(container.dataset.images || '[]'); } catch(e){ images = []; }
+    if(!images.length) return;
+    const label = container.dataset.label || '';
+
+    container.setAttribute('role','group');
+    container.setAttribute('aria-label', label);
+    container.innerHTML =
+      '<button type="button" class="g-nav g-prev" aria-label="Photo précédente">&#8249;</button>' +
+      '<button type="button" class="g-img-btn" aria-label="Agrandir la photo"><img class="g-img" alt=""></button>' +
+      '<button type="button" class="g-nav g-next" aria-label="Photo suivante">&#8250;</button>' +
+      '<span class="g-count"></span>';
+
+    const imgEl   = container.querySelector('.g-img');
+    const countEl = container.querySelector('.g-count');
+    const prevBtn = container.querySelector('.g-prev');
+    const nextBtn = container.querySelector('.g-next');
+    const openBtn = container.querySelector('.g-img-btn');
+
+    const state = { images: images, index: 0, label: label };
+
+    function render(){
+      imgEl.src = state.images[state.index];
+      imgEl.alt = label + ' — photo ' + (state.index+1) + ' sur ' + state.images.length;
+      const multi = state.images.length > 1;
+      countEl.style.display = multi ? '' : 'none';
+      prevBtn.style.display = multi ? '' : 'none';
+      nextBtn.style.display = multi ? '' : 'none';
+      if(multi) countEl.textContent = (state.index+1) + ' / ' + state.images.length;
+    }
+
+    state.show = function(i){
+      state.index = (i + state.images.length) % state.images.length;
+      render();
+      if(activeLightboxGallery === state) updateLightbox();
+    };
+
+    prevBtn.addEventListener('click', function(){ state.show(state.index - 1); });
+    nextBtn.addEventListener('click', function(){ state.show(state.index + 1); });
+    openBtn.addEventListener('click', function(){ openLightbox(state); });
+
+    render();
+    galleries.push(state);
+  }
+
+  document.querySelectorAll('.gallery[data-images]').forEach(buildGallery);
+
+  /* ---------- Tabs ---------- */
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const panels = Array.from(document.querySelectorAll('.chantier-panel'));
+
+  function activateTab(id){
+    panels.forEach(function(p){ p.classList.toggle('active', p.id === id); });
+    tabs.forEach(function(t){
+      const on = t.dataset.target === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+  }
+
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ activateTab(t.dataset.target); }); });
+
+  document.getElementById('chantierTabs').addEventListener('keydown', function(e){
+    const idx = tabs.indexOf(document.activeElement);
+    if(idx === -1) return;
+    let newIdx = null;
+    if(e.key === 'ArrowRight') newIdx = (idx + 1) % tabs.length;
+    if(e.key === 'ArrowLeft')  newIdx = (idx - 1 + tabs.length) % tabs.length;
+    if(newIdx !== null){
+      e.preventDefault();
+      tabs[newIdx].focus();
+      activateTab(tabs[newIdx].dataset.target);
+    }
+  });
+
+  if(tabs.length) activateTab(tabs[0].dataset.target);
+
+  /* ---------- Mobile nav ---------- */
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){
+    const open = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* ---------- Contact form (démo — brancher Formspree ou équivalent pour l'envoi réel) ---------- */
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.classList.add('show');
+    form.reset();
+    setTimeout(function(){ status.classList.remove('show'); }, 6000);
+  });
+
+  /* ---------- Footer year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
