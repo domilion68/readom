@@ -107,6 +107,18 @@
   .hero-logo{max-width:300px;width:100%;height:auto;}
   .hero-tagline{margin-top:1.5rem;font-size:0.9375rem;color:var(--graphite);}
   .hero-tagline strong{color:var(--ink);font-weight:600;}
+  .hero-intro{
+    color:var(--graphite);
+    font-size:clamp(0.98rem,1.6vw,1.1rem);
+    line-height:1.65;
+    max-width:720px;
+    margin:0 0 0.9rem 0;
+    font-weight:400;
+    opacity:0.95;
+  }
+  @media (min-width:900px){
+    .hero-intro{font-size:1.15rem;}
+  }
   .chip-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.25rem;}
   .chip{
     font-size:0.75rem;font-weight:600;letter-spacing:0.01em;
@@ -118,15 +130,31 @@
   .chantiers{padding:4.5rem 0;}
   .chantiers-header{max-width:640px;margin-bottom:2.5rem;}
 
+  .tabs-wrapper{
+    display:flex;align-items:center;gap:0.75rem;margin-bottom:2.5rem;
+  }
   .tabs{
-    display:flex;gap:0.5rem;overflow-x:auto;margin-bottom:2.5rem;
+    display:flex;gap:0.5rem;overflow-x:auto;flex:1 1 auto;
     scrollbar-width:none;-ms-overflow-style:none;
   }
   .tabs::-webkit-scrollbar{display:none;}
+  .tabs-nav{
+    display:none;align-items:center;justify-content:center;
+    width:40px;height:40px;border:1px solid var(--line);
+    border-radius:50%;background:var(--paper);color:var(--ink);
+    cursor:pointer;font-size:1rem;transition:background .15s, border-color .15s;
+  }
+  .tabs-nav:hover,
+  .tabs-nav:focus-visible{
+    background:var(--stone);border-color:var(--ink);
+  }
   .tab{
     flex:0 0 auto;padding:0.6rem 1.15rem;border:1px solid var(--line);background:var(--paper);
     font-weight:600;font-size:.875rem;cursor:pointer;color:var(--graphite);
     white-space:nowrap;transition:border-color .15s, color .15s, background .15s;
+  }
+  @media (max-width:900px){
+    .tabs-nav{display:flex;}
   }
   .tab:hover{border-color:var(--ink);color:var(--ink);}
   .tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper);}
@@ -280,7 +308,8 @@
   <div class="wrap">
     <h1 class="sr-only">READOM — Rénovation d'intérieur à Libourne et en Gironde</h1>
     <img class="hero-logo" src="logo_readom.png" alt="READOM — rénovation intérieure">
-    <p class="hero-tagline"><strong>Rénovation et Aménagement</strong> — Libourne (33) &amp; Oléron (17)</p>
+    <p class="hero-tagline"><strong>Rénovation intérieure</strong> — Libourne (33) &amp; Oléron (17)</p>
+    <p class="hero-intro">Après 30 ans de carrière dans le BTP à organiser, gérer et encadrer des chantiers de Génie civil (ouvrages d'arts, ouvrages portuaires), canalisations d'eau potable, d'eaux usées, travaux de bâtiment et voirie, j'ai décidé après 6 rénovations complètes à titre personnel de créer mon entreprise pour exercer cette passion.</p>
     <div class="chip-row">
       <span class="chip location">Libourne (33) &amp; Oléron (17) </span>
       <span class="chip">Isolation</span>
@@ -303,11 +332,15 @@
       <p class="section-copy">Rénovations et aménagements complets, présentés en photos avant / après.</p>
     </div>
 
-    <div class="tabs" role="tablist" aria-label="Chantiers" id="chantierTabs">
-      <button class="tab" role="tab" id="tab-arcachon" aria-controls="panel-arcachon" data-target="panel-arcachon">Arcachon</button>
-      <button class="tab" role="tab" id="tab-combles" aria-controls="panel-combles" data-target="panel-combles">Combles</button>
-      <button class="tab" role="tab" id="tab-facade" aria-controls="panel-facade" data-target="panel-facade">Façade Chateau d'Oléron</button>
-      <button class="tab" role="tab" id="tab-puits" aria-controls="panel-puits" data-target="panel-puits">Puits de jour</button>
+    <div class="tabs-wrapper">
+      <button class="tabs-nav tabs-nav-prev" type="button" id="tabScrollPrev" aria-label="Voir chantier précédent">←</button>
+      <div class="tabs" role="tablist" aria-label="Chantiers" id="chantierTabs">
+        <button class="tab" role="tab" id="tab-arcachon" aria-controls="panel-arcachon" data-target="panel-arcachon">Arcachon</button>
+        <button class="tab" role="tab" id="tab-combles" aria-controls="panel-combles" data-target="panel-combles">Combles</button>
+        <button class="tab" role="tab" id="tab-facade" aria-controls="panel-facade" data-target="panel-facade">Façade Chateau d'Oléron</button>
+        <button class="tab" role="tab" id="tab-puits" aria-controls="panel-puits" data-target="panel-puits">Puits de jour</button>
+      </div>
+      <button class="tabs-nav tabs-nav-next" type="button" id="tabScrollNext" aria-label="Voir chantier suivant">→</button>
     </div>
 
     <!-- ARCACHON -->
@@ -421,7 +454,7 @@
   <div class="wrap contact-grid">
     <div class="contact-left">
       <h2>Un projet<br>en tête ?</h2>
-      <p>Envoyez les grandes lignes — superficie, type de travaux, délais souhaités — et une réponse suivra sous 48 h.</p>
+      <p>Envoyez les grandes lignes — superficie, type de travaux, délais souhaités — et une réponse suivra rapidement.</p>
       <p>Devis gratuit, sans engagement.</p>
 
       <div class="direct">
@@ -596,6 +629,13 @@
   /* ---------- Tabs ---------- */
   const tabs = Array.from(document.querySelectorAll('.tab'));
   const panels = Array.from(document.querySelectorAll('.chantier-panel'));
+  const tabsContainer = document.getElementById('chantierTabs');
+  const tabScrollPrev = document.getElementById('tabScrollPrev');
+  const tabScrollNext = document.getElementById('tabScrollNext');
+
+  function scrollTabs(offset){
+    tabsContainer.scrollBy({ left: offset, behavior: 'smooth' });
+  }
 
   function activateTab(id){
     panels.forEach(function(p){ p.classList.toggle('active', p.id === id); });
@@ -605,6 +645,9 @@
       t.tabIndex = on ? 0 : -1;
     });
   }
+
+  if(tabScrollPrev){ tabScrollPrev.addEventListener('click', function(){ scrollTabs(-220); }); }
+  if(tabScrollNext){ tabScrollNext.addEventListener('click', function(){ scrollTabs(220); }); }
 
   tabs.forEach(function(t){ t.addEventListener('click', function(){ activateTab(t.dataset.target); }); });
 
